@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Principal View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="PrincipalViewController" customModule="RandomNumber" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guess The Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJv-ha-Wm0">
+                                <rect key="frame" x="50" y="97" width="290" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="xbp-hu-eZ9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" systemColor="systemTealColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guess the number! To do this, enter a number between 0 and 10 in the text field. You have only 3 chances. Good luck! " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVL-Rh-Vjn">
+                                <rect key="frame" x="30" y="277" width="330" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="hvd-7d-x7S"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type a number here." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="99B-eT-2RL">
+                                <rect key="frame" x="20" y="467" width="350" height="50"/>
+                                <color key="tintColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="r3W-en-M8B"/>
+                                </constraints>
+                                <color key="textColor" systemColor="systemTealColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="us0-AM-xYP">
+                                <rect key="frame" x="20" y="730" width="350" height="60"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="eKt-Dg-4uG"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="TRY" cornerStyle="medium">
+                                    <backgroundConfiguration key="background"/>
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="25"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="toTryBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dHY-g1-bMP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NVL-Rh-Vjn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="14a-Fj-2IR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="99B-eT-2RL" secondAttribute="trailing" constant="20" id="5DO-ko-IK9"/>
+                            <constraint firstItem="us0-AM-xYP" firstAttribute="top" secondItem="99B-eT-2RL" secondAttribute="bottom" constant="213" id="PHc-Fw-A72"/>
+                            <constraint firstItem="NVL-Rh-Vjn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="RRa-TT-4qH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kJv-ha-Wm0" secondAttribute="trailing" constant="50" id="RsZ-OP-7z9"/>
+                            <constraint firstItem="kJv-ha-Wm0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="X6Y-j6-f2x"/>
+                            <constraint firstItem="us0-AM-xYP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="euA-JD-r7t"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="us0-AM-xYP" secondAttribute="bottom" constant="20" id="f7b-94-dr1"/>
+                            <constraint firstItem="99B-eT-2RL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hB3-nT-w1V"/>
+                            <constraint firstItem="99B-eT-2RL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="iU1-Jr-zpi"/>
+                            <constraint firstItem="kJv-ha-Wm0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="izf-I1-OL7"/>
+                            <constraint firstItem="us0-AM-xYP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="q5d-cM-k0d"/>
+                            <constraint firstItem="NVL-Rh-Vjn" firstAttribute="top" secondItem="kJv-ha-Wm0" secondAttribute="bottom" constant="130" id="uU8-1c-nUQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="us0-AM-xYP" secondAttribute="trailing" constant="20" id="vZ5-E7-5J8"/>
+                            <constraint firstItem="kJv-ha-Wm0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="wlS-6m-Crd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NVL-Rh-Vjn" secondAttribute="trailing" constant="30" id="znX-AW-xKS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="numberTextField" destination="99B-eT-2RL" id="cF9-cQ-cqI"/>
+                        <outlet property="resultLabel" destination="NVL-Rh-Vjn" id="2Ze-IH-OTj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23.076923076923077" y="-27.72511848341232"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
