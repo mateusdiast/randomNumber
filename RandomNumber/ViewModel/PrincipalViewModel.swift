@@ -13,7 +13,7 @@ protocol PrincipalViewModelDelegate: AnyObject {
     func resultIsHigher(messenger: String)
     func attemptLimit(messenger: String)
     func typeAgain(messenger: String)
-    func playAgain()
+    func typeAValidateNumber()
 }
 
 class PrincipalViewModel {
@@ -21,34 +21,50 @@ class PrincipalViewModel {
     weak var delegate: PrincipalViewModelDelegate?
     let messengerFromModel = PrincipalModel()
     
-    let limitedNumberOfTapped: Int = 3
+    let limitedNumberOfTaps: Int = 3
     var numberOfTaps: Int = 0
     var randomNumber = Int.random(in: 0...10)
+    var numberValue: String?
+    
+    
+    func setNumberValue(value: String?) {
+        self.numberValue = value
+    }
 
-    func onLoadResult(numberValue: String){
+    func onLoadResult(){
+  
+        guard let numberValue = Int(numberValue!), numberValue <= 10 else{
+            delegate?.typeAValidateNumber()
+            print(numberOfTaps)
+            return
+        }
         
-        guard let numberValue = Int(numberValue) else {return}
-        
-        if numberValue == randomNumber {
+        if numberValue == randomNumber  {
             delegate?.resultIsTrue(messenger: messengerFromModel.resultIsTrueMessenger)
             delegate?.typeAgain(messenger: messengerFromModel.typeAgainMessenger)
-            delegate?.playAgain()
-        } else if numberValue > randomNumber && numberOfTaps <= 3 {
+            numberOfTaps = 0
+            randomNumber = Int.random(in: 0...10)
+            
+        } else if numberValue > randomNumber && numberOfTaps < 3 {
             delegate?.resultIsLower(messenger: messengerFromModel.resultIsLowerMessenger)
             delegate?.typeAgain(messenger: messengerFromModel.typeAgainMessenger)
-        } else if numberValue < randomNumber && numberOfTaps <= 3 {
+            numberOfTaps += 1
+            
+        } else if numberValue < randomNumber && numberOfTaps < 3 {
             delegate?.resultIsHigher(messenger: messengerFromModel.resultIsHigherMessenger)
             delegate?.typeAgain(messenger: messengerFromModel.typeAgainMessenger)
+            numberOfTaps += 1
         }
+        
+        print(numberOfTaps)
     }
     
-    func onLoadAttempLimited(limitedNumberOfTapped: Int){
-        self.numberOfTaps = limitedNumberOfTapped
-        if self.limitedNumberOfTapped == numberOfTaps {
+    func onLoadAttempLimited(){
+        if  limitedNumberOfTaps == numberOfTaps {
             delegate?.attemptLimit(messenger: messengerFromModel.attemptLimitMessenger)
             delegate?.typeAgain(messenger: messengerFromModel.typeAgainMessenger)
-            delegate?.playAgain()
+            numberOfTaps = 0
+            randomNumber = Int.random(in: 0...10)
         }
     }
-    
 }

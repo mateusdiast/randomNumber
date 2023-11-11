@@ -25,13 +25,10 @@ class PrincipalViewController: UIViewController {
 
     @IBAction func toTryBtnPressed(_ sender: UIButton) {
         principalViewModel.delegate = self
-        numberOfTaps += 1
-        principalViewModel.onLoadResult(numberValue: numberTextField.text ?? "0")
-        if numberOfTaps == 3 {
-            principalViewModel.onLoadAttempLimited(limitedNumberOfTapped: numberOfTaps)
-        } 
+        principalViewModel.setNumberValue(value: numberTextField.text)
+        principalViewModel.onLoadResult()
+        principalViewModel.onLoadAttempLimited()
         
-        print(numberOfTaps)
     }
     
 }
@@ -69,9 +66,10 @@ extension PrincipalViewController: PrincipalViewModelDelegate{
         numberTextField.placeholder = messenger
     }
     
-    func playAgain() {
-        numberOfTaps = 0
-        principalViewModel.randomNumber = Int.random(in: 0...10)
+    func typeAValidateNumber() {
+        let alertAttemptLimit = UIAlertController(title: "Error!", message: "Enter a valid number!", preferredStyle: UIAlertController.Style.alert)
+        alertAttemptLimit.addAction(UIAlertAction(title: "Try again!", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alertAttemptLimit, animated: true, completion: nil)
     }
     
 }
