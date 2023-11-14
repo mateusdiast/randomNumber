@@ -19,21 +19,14 @@ protocol PrincipalViewModelDelegate: AnyObject {
 class PrincipalViewModel {
     
     weak var delegate: PrincipalViewModelDelegate?
-    let messengerFromModel = PrincipalModel()
+    private var randomNumber = Int.random(in: 0...10)
+    private var numberOfTaps: Int = 0
     
-    let limitedNumberOfTaps: Int = 3
-    var numberOfTaps: Int = 0
-    var randomNumber = Int.random(in: 0...10)
-    var numberValue: String?
-    
-    
-    func setNumberValue(value: String?) {
-        self.numberValue = value
-    }
-
-    func onLoadResult(){
-  
-        guard let numberValue = Int(numberValue!), numberValue <= 10 else{
+    func onLoadResult(value: String?){
+        
+        let messengerFromModel = PrincipalModel()
+        
+        guard let numberValue = Int(value!), numberValue <= 10 else{
             delegate?.typeAValidateNumber()
             print(numberOfTaps)
             return
@@ -44,27 +37,20 @@ class PrincipalViewModel {
             delegate?.typeAgain(messenger: messengerFromModel.typeAgainMessenger)
             numberOfTaps = 0
             randomNumber = Int.random(in: 0...10)
-            
-        } else if numberValue > randomNumber && numberOfTaps < 3 {
-            delegate?.resultIsLower(messenger: messengerFromModel.resultIsLowerMessenger)
-            delegate?.typeAgain(messenger: messengerFromModel.typeAgainMessenger)
-            numberOfTaps += 1
-            
-        } else if numberValue < randomNumber && numberOfTaps < 3 {
-            delegate?.resultIsHigher(messenger: messengerFromModel.resultIsHigherMessenger)
-            delegate?.typeAgain(messenger: messengerFromModel.typeAgainMessenger)
-            numberOfTaps += 1
-        }
-        
-        print(numberOfTaps)
-    }
-    
-    func onLoadAttempLimited(){
-        if  limitedNumberOfTaps == numberOfTaps {
+        } else if numberOfTaps >= 2 {
             delegate?.attemptLimit(messenger: messengerFromModel.attemptLimitMessenger)
             delegate?.typeAgain(messenger: messengerFromModel.typeAgainMessenger)
             numberOfTaps = 0
             randomNumber = Int.random(in: 0...10)
+        } else if numberValue < randomNumber  {
+            delegate?.resultIsHigher(messenger: messengerFromModel.resultIsHigherMessenger)
+            delegate?.typeAgain(messenger: messengerFromModel.typeAgainMessenger)
+            numberOfTaps += 1
+        } else {
+            delegate?.resultIsLower(messenger: messengerFromModel.resultIsLowerMessenger)
+            delegate?.typeAgain(messenger: messengerFromModel.typeAgainMessenger)
+            numberOfTaps += 1
         }
+        print(numberOfTaps)
     }
 }

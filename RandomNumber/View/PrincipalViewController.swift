@@ -25,9 +25,7 @@ class PrincipalViewController: UIViewController {
 
     @IBAction func toTryBtnPressed(_ sender: UIButton) {
         principalViewModel.delegate = self
-        principalViewModel.setNumberValue(value: numberTextField.text)
-        principalViewModel.onLoadResult()
-        principalViewModel.onLoadAttempLimited()
+        principalViewModel.onLoadResult(value: numberTextField.text)
         
     }
     
